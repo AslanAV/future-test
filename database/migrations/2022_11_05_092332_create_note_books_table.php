@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('note_books', function (Blueprint $table) {
             $table->id();
+
+            $table->string('family_name_first_name_patronymic');
+            $table->string('company')->nullable();
+            $table->string('phone');
+            $table->string('email');
+            $table->timestamp("birthday")->nullable();
+            $table->string("photo")->nullable();
+
             $table->timestamps();
         });
     }

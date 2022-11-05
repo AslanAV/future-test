@@ -13,7 +13,7 @@ class StoreNoteBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreNoteBookRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'family_name_first_name_patronymic' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string',
         ];
     }
 }
+
