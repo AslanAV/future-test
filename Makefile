@@ -51,8 +51,14 @@ ci:
 build-front:
 	npm run build
 
-compose:
-	docker-compose up
+compose-start:
+	./vendor/bin/sail up
+
+compose-start-d:
+	./vendor/bin/sail up -d
+
+compose-down:
+	./vendor/bin/sail down
 
 compose-test:
 	docker-compose run web make test
@@ -67,13 +73,10 @@ compose-make-setup:
 	docker-compose run web make setup
 
 compose-build:
-	docker-compose build
+	./vendor/bin/sail build
 
 compose-db:
 	docker-compose exec db psql -U postgres
-
-compose-down:
-	docker-compose down -v
 
 ide-helper:
 	php artisan ide-helper:eloquent
