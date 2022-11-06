@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\NoteBook;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateNoteBookRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateNoteBookRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,8 @@ class UpdateNoteBookRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $notebook = NoteBook::factory()->create();
+
+        $route = $route('notebook.update', ['notebook' => $notebook]);
     }
 }

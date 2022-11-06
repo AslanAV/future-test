@@ -14,6 +14,17 @@ class NoteBook extends Model
         "phone",
         "email",
         "birthday",
-        "photo"
+        "photo",
+        "company",
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'updated_at',
+        'created_at',
     ];
 }

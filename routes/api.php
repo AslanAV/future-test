@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/v1/notebook/', NoteBookController::class);
+//Route::apiResource('/v1/notebook/', NoteBookController::class);
+
+Route::prefix('v1')->group(fn () => Route::apiResource('/notebook', NoteBookController::class));
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

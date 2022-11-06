@@ -11,7 +11,7 @@ class NoteBookController extends Controller
 {
     public function index()
     {
-        $contacts = NoteBook::paginate(5);
+        $contacts = NoteBook::paginate(10);
         return response()->json($contacts);
     }
 
@@ -25,42 +25,26 @@ class NoteBookController extends Controller
         return response()->json($contact, 201);
     }
 
-    public function show(NoteBook $noteBook)
+    public function show($id)
     {
+        $noteBook = NoteBook::findOrFail($id);
         return response()->json($noteBook);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\NoteBook  $noteBook
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(NoteBook $noteBook)
+    public function update(UpdateNoteBookRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $noteBook = NoteBook::findOrFail($id);
+        $noteBook->fill($validated);
+        $noteBook->save();
+        return response()->json($noteBook);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateNoteBookRequest  $request
-     * @param  \App\Models\NoteBook  $noteBook
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateNoteBookRequest $request, NoteBook $noteBook)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\NoteBook  $noteBook
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(NoteBook $noteBook)
+    public function destroy($id)
     {
-        //
+        $noteBook = NoteBook::findOrFail($id);
+        $noteBook->deleteOrFail();
+        return response()->noContent();
     }
 }

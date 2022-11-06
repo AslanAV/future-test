@@ -27,6 +27,9 @@ class StoreNoteBookRequest extends FormRequest
             'family_name_first_name_patronymic' => 'required|string',
             'phone' => 'required|string',
             'email' => 'required|string',
+            'company' => 'nullable|string',
+            'birthday' => 'nullable|integer',
+            'photo' => 'nullable|string'
         ];
     }
 }

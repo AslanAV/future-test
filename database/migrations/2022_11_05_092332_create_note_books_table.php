@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('company')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->timestamp("birthday")->nullable();
+            $table->integer("birthday")->nullable();
             $table->string("photo")->nullable();
 
             $table->timestamps();
