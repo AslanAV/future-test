@@ -11,7 +11,7 @@ class NotebookTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testNotebookStoreWithFullBody()
+    public function test_notebook_store_with_full_body()
     {
         $this->assertDatabaseCount('note_books', 0);
 
@@ -31,7 +31,7 @@ class NotebookTest extends TestCase
         $this->assertDatabaseCount('note_books', 1);
     }
 
-    public function testNotebookStoreWithRequiredData()
+    public function test_notebook_store_with_only_required_data()
     {
         $this->assertDatabaseCount('note_books', 0);
 
@@ -48,7 +48,7 @@ class NotebookTest extends TestCase
         $this->assertDatabaseCount('note_books', 1);
     }
 
-    public function testNotebookStoreWithNullData()
+    public function test_notebook_store_with_null_not_require_data()
     {
         $this->assertDatabaseCount('note_books', 0);
 
@@ -68,7 +68,7 @@ class NotebookTest extends TestCase
         $this->assertDatabaseCount('note_books', 1);
     }
 
-    public function testFailedNotebookStoreWithOutRequiredData()
+    public function test_failed_notebook_store_with_out_required_data()
     {
         $this->assertDatabaseCount('note_books', 0);
 
@@ -88,24 +88,71 @@ class NotebookTest extends TestCase
         $this->assertDatabaseCount('note_books', 0);
     }
 
-    public function testNotebookUpdateWithFullData()
-    {
-        $this->assertDatabaseCount('note_books', 0);
 
-        $route = route('notebook.store');
+    public function test_update_with_full_data()
+    {
+
+        $notebook = NoteBook::factory()->create();
+        $id = $notebook->toArray()['id'];
+
+        $route = route('notebook.update', ['notebook' => $id]);
+
         $body = [
             'family_name_first_name_patronymic' => 'Ivanov Ivan Ivanich',
-            'phone' => null,
-            'email' => null,
-            'company' => null,
-            'birthday' => null,
-            'photo' => null
+            'phone' => 'new field',
+            'email' => 'new field',
+            'company' => 'new field',
+            'birthday' => 1660338000,
+            'photo' => 'new field',
         ];
-        $response = $this->json('POST', $route, $body);
+        $response = $this->json('PUT', $route, $body);
 
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertStatus(Response::HTTP_OK);
 
-        $this->assertDatabaseCount('note_books', 0);
+        $this->assertDatabaseHas(
+            'note_books',
+            array_merge($body, ['id' => $id]),
+        );
+    }
+
+    public function test_update_with_only_required_data()
+    {
+
+        $notebook = NoteBook::factory()->create();
+        $id = $notebook->toArray()['id'];
+
+        $route = route('notebook.update', ['notebook' => $id]);
+
+        $body = [
+            'family_name_first_name_patronymic' => 'Ivanov Ivan Ivanich',
+            'phone' => 'new field',
+            'email' => 'new field',
+        ];
+        $response = $this->json('PUT', $route, $body);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertDatabaseHas(
+            'note_books',
+            array_merge($body, ['id' => $id]),
+        );
+    }
+
+    public function test_destroy()
+    {
+
+        $notebook = NoteBook::factory()->create();
+        $id = $notebook->toArray()['id'];
+
+        $route = route('notebook.destroy', ['notebook' => $id]);
+
+        $response = $this->json('DELETE', $route);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseMissing('note_books', [
+            'id' => $id,
+        ]);
     }
 
 }

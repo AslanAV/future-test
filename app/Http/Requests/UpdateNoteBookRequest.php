@@ -24,8 +24,14 @@ class UpdateNoteBookRequest extends FormRequest
      */
     public function rules()
     {
-        $notebook = NoteBook::factory()->create();
+        return [
+            'family_name_first_name_patronymic' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string',
+            'company' => 'nullable|string',
+            'birthday' => 'nullable|integer',
+            'photo' => 'nullable|string'
 
-        $route = $route('notebook.update', ['notebook' => $notebook]);
+        ];
     }
 }

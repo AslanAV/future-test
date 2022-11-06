@@ -60,23 +60,8 @@ compose-start-d:
 compose-down:
 	./vendor/bin/sail down
 
-compose-test:
-	docker-compose run web make test
-
-compose-bash:
-	docker-compose run web bash
-
-compose-setup: compose-build
-	docker-compose run web make setup
-
-compose-make-setup:
-	docker-compose run web make setup
-
 compose-build:
 	./vendor/bin/sail build
-
-compose-db:
-	docker-compose exec db psql -U postgres
 
 ide-helper:
 	php artisan ide-helper:eloquent
