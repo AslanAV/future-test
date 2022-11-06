@@ -37,10 +37,22 @@ Swagger для отображения методов api (https://swagger.io/)
 
 Дополнительным плюсом будет: Финальный билд приложения должен быть запускаться из Docker контейнера (хотябы с минимальной конфигурацией)
 ***
+REST API notebook
 
-[tests](https://github.com/AslanAV/future-test/blob/main/tests/Feature/NotebookTest.php)
+| **method** 	 |    **route**      	    | **name(route)** 	  |    **Controller**       	    |
+|:------------:|:----------------------:|:------------------:|:----------------------------:|
+|   GET    	   |  api/v1/notebook   	   | notebook.index  	  | NoteBookController@index  	  |
+|  POST    	   |  api/v1/notebook   	   | notebook.store  	  | NoteBookController@store  	  |
+|   GET    	   | api/v1/notebook/{id} 	 |  notebook.show  	  |  NoteBookController@show  	  |
+| PUT/PATCH 	  | api/v1/notebook/{id} 	 | notebook.update 	  | NoteBookController@update 	  |
+|  DELETE   	  | api/v1/notebook/{id} 	 | notebook.destroy 	 | NoteBookController@destroy 	 |
 
 ***
+
+[Тесты API](https://github.com/AslanAV/future-test/blob/main/tests/Feature/NotebookTest.php)
+
+***
+
 
 ## Setup project local
 
