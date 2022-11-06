@@ -38,7 +38,7 @@ Swagger для отображения методов api (https://swagger.io/)
 Дополнительным плюсом будет: Финальный билд приложения должен быть запускаться из Docker контейнера (хотябы с минимальной конфигурацией)
 ***
 
-[tests]()
+[tests](https://github.com/AslanAV/future-test/blob/main/tests/Feature/NotebookTest.php)
 
 ***
 
