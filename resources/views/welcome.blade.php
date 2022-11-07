@@ -17,7 +17,7 @@
 <script>
     window.onload = () => {
         window.ui = SwaggerUIBundle({
-            url: '../swagger/future_tet.yaml',
+            url: '/future_test',
             dom_id: '#swagger-ui',
             presets: [
                 SwaggerUIBundle.presets.apis,

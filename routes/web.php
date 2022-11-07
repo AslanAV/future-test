@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/future_test', function () {
+    return file_get_contents(__DIR__ . '/../resources/swagger/future_test.yaml');
+});

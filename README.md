@@ -39,7 +39,12 @@ Swagger для отображения методов api (https://swagger.io/)
 Дополнительным плюсом будет: Финальный билд приложения должен быть запускаться из Docker контейнера (хотя бы с минимальной конфигурацией)
 ***
 REST API notebook
-
+***
+swagger UI
+```shell
+http://0.0.0.0:80
+```
+***
 | **method** 	 |    **route**      	    | **name(route)** 	  |    **Controller**       	    |
 |:------------:|:----------------------:|:------------------:|:----------------------------:|
 |   GET    	   |  api/v1/notebook   	   | notebook.index  	  | NoteBookController@index  	  |
