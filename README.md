@@ -37,14 +37,11 @@ Swagger для отображения методов api (https://swagger.io/)
 Так же напишите нам, как вы тестировали результат своей работы. Какие используете инструменты и как вы осуществляете тестирование.
 
 Дополнительным плюсом будет: Финальный билд приложения должен быть запускаться из Docker контейнера (хотя бы с минимальной конфигурацией)
+
 ***
 REST API notebook
 ***
-swagger UI
-```shell
-http://0.0.0.0:80
-```
-***
+
 | **method** 	 |    **route**      	    | **name(route)** 	  |    **Controller**       	    |
 |:------------:|:----------------------:|:------------------:|:----------------------------:|
 |   GET    	   |  api/v1/notebook   	   | notebook.index  	  | NoteBookController@index  	  |
@@ -53,6 +50,15 @@ http://0.0.0.0:80
 | PUT/PATCH 	  | api/v1/notebook/{id} 	 | notebook.update 	  | NoteBookController@update 	  |
 |  DELETE   	  | api/v1/notebook/{id} 	 | notebook.destroy 	 | NoteBookController@destroy 	 |
 
+***
+File for swagger
+
+[File from GitHub repo](https://github.com/AslanAV/future-test/blob/main/resources/swagger/future_test.yaml)
+***
+Swagger UI
+```shell
+http://0.0.0.0:80
+```
 ***
 
 [Тесты API](https://github.com/AslanAV/future-test/blob/main/tests/Feature/NotebookTest.php)
@@ -66,24 +72,24 @@ http://0.0.0.0:80
 make setup
 ```
 
-### start server local
+### Start server local
 ```shell
 make start
 ```
 
 ***
 
-## Setup project docker
+## Setup project docker-compose
 ```shell
 make compose-build
 ```
 
-### start server docker
+### Start server docker-compose
 ```shell
 make compose-start-d
 ```
 
-### stop server docker
+### Stop server docker-compose
 ```shell
 make compose-down
 ```
